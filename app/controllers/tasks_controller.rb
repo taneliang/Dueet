@@ -8,7 +8,13 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     @task.save
-    redirect_back(fallback_location: "/tasks")
+    redirect_to tasks_path
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tasks_path
   end
 
   private
