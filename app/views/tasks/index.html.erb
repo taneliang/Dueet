@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Aiken Dueet</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Completed</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.completed %></td>
+        <td><%= task.due %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="row">
+    <%= form_with scope: :task, url: tasks_path, local: true do |form| %>
+      <div class="input-field col s12">
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= form.label :due %><br>
+        <%= form.text_field :due, :class => 'datepicker' %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= form.submit :class => 'waves-effect waves-light btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>
