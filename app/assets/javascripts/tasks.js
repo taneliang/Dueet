@@ -10,4 +10,13 @@ $(document).ready(function() {
     close: "Ok",
     closeOnSelect: false // Close upon selecting a date,
   });
+
+  $("input[id$='completion']").on("change", function(event) {
+    var taskId = event.target.getAttribute("taskid");
+    $.ajax({
+      url: `/tasks/${taskId}`,
+      method: "PATCH",
+      data: { task: { completed: event.target.checked } }
+    });
+  });
 });

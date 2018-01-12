@@ -4,15 +4,21 @@
   <table>
     <thead>
       <tr>
+        <th></th>
         <th>Title</th>
-        <th>Completed</th>
         <th>Due</th>
       </tr>
     </thead>
     <% @tasks.each do |task| %>
       <tr>
+        <td>
+          <input type="checkbox"
+                 <%= task.completed and "checked='checked'" %>
+                 taskid=<%= task.id %>
+                 id=<%= task.id.to_s + "completion" %> />
+          <label for=<%= task.id.to_s + "completion" %>></label>
+        </td>
         <td><%= task.title %></td>
-        <td><%= task.completed %></td>
         <td><%= task.due %></td>
         <td><%= link_to 'Destroy', task_path(task),
           method: :delete,
