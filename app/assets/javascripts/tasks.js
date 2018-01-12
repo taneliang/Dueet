@@ -14,7 +14,7 @@ $(document).ready(function() {
   $("input[id$='completion']").on("change", function(event) {
     var taskId = event.target.getAttribute("taskid");
     $.ajax({
-      url: `/tasks/${taskId}`,
+      url: "/tasks/" + taskId,
       method: "PATCH",
       data: { task: { completed: event.target.checked } }
     });
