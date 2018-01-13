@@ -1,24 +1,8 @@
-# README
+# [Dueet](https://dueett.herokuapp.com)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A todo app written in Rails written as part of a CVWO assignment.
 
-Things you may want to cover:
+![screenshot](/screenshots/mid-assignment-screenshot.png)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Name: Tan E-Liang\
+Matriculation number: A0168922W
