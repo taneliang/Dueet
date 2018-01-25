@@ -2,10 +2,10 @@
 
 one:
   title: MyString
+  dueDate: 2018-01-25 18:23:17
   completed: false
-  due: 2018-01-10 17:23:30
 
 two:
   title: MyString
+  dueDate: 2018-01-25 18:23:17
   completed: false
-  due: 2018-01-10 17:23:30

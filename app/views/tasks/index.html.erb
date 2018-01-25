@@ -1,47 +1,31 @@
-<div class="container">
-  <h1>Aiken Dueet</h1>
+<p id="notice"><%= notice %></p>
 
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Due</th>
-      </tr>
-    </thead>
+<h1>Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Duedate</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td>
-          <input type="checkbox"
-                 <%= task.completed and "checked='checked'" %>
-                 taskid=<%= task.id %>
-                 id=<%= task.id.to_s + "completion" %> />
-          <label for=<%= task.id.to_s + "completion" %>></label>
-        </td>
         <td><%= task.title %></td>
-        <td><%= task.due %></td>
-        <td><%= link_to 'Destroy', task_path(task),
-          method: :delete,
-          data: { confirm: 'Are you sure?' } %></td>
+        <td><%= task.dueDate %></td>
+        <td><%= task.completed %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </table>
+  </tbody>
+</table>
 
-  <div class="row">
-    <%= form_with scope: :task, url: tasks_path, local: true do |form| %>
-      <div class="input-field col s12">
-        <%= form.label :title %><br>
-        <%= form.text_field :title %>
-      </div>
+<br>
 
-      <div class="input-field col s12">
-        <%= form.label :due %><br>
-        <%= form.text_field :due, :class => 'datepicker' %>
-      </div>
-
-      <div class="input-field col s12">
-        <%= form.submit :class => 'waves-effect waves-light btn' %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= link_to 'New Task', new_task_path %>
