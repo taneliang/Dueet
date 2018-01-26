@@ -17,6 +17,7 @@
 function setup() {
   $("select").select();
   $(".datepicker").datepicker();
+  $(".fixed-action-btn").floatingActionButton();
 }
 
 $(document).ready(setup);

@@ -43,6 +43,10 @@
 
     <br>
 
-    <%= link_to 'New Task', new_task_path %>
+    <div class="fixed-action-btn">
+      <%= link_to new_task_path, class: "btn-floating btn-large red" do %>
+        <i class="large material-icons">add</i>
+      <% end %>
+    </div>
   </div>
 </div>
