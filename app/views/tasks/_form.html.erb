@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :title %>
     <%= form.text_field :title, id: :task_title %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.label :due_date %>
     <%= form.datetime_select :due_date, id: :task_due_date %>
   </div>
 
-  <div class="field">
+  <div class="input-field col s12">
     <%= form.check_box :completed, id: :task_completed %>
     <%= form.label :completed %>
   </div>
 
+  <div class="input-field col s12">
+    <%= form.label :categories %>
+    <%= select_tag "task[categories]", options_from_collection_for_select(categories, "id", "name", task.categories.map { |c| c.id }), multiple: true, include_blank: true %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => 'waves-effect waves-light btn' %>
   </div>
 <% end %>

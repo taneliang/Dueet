@@ -15,10 +15,12 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @categories = Category.all
   end
 
   # GET /tasks/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /tasks
@@ -41,7 +43,21 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
-      if @task.update(task_params)
+      other_params, categories = task_params
+
+      # Set categories before updating the other params
+      @task.categories = [] # Clear as we don't want stray categories that have been deselected
+      categories.each do |category_id|
+        if category_id.empty?
+          next
+        end
+        category = Category.find(category_id)
+        if category.valid? and not @task.categories.include?(category)
+          @task.categories.push(category)
+        end
+      end
+
+      if @task.update(other_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -69,6 +85,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :due_date, :completed)
+      all_params = params.require(:task).permit(:title, :due_date, :completed, categories: [])
+      return all_params.except(:categories), all_params[:categories]
     end
 end

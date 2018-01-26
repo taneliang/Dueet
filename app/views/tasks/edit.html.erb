@@ -1,6 +1,10 @@
-<h1>Editing Task</h1>
+<div class="container">
+  <h1>Editing Task</h1>
 
-<%= render 'form', task: @task %>
+  <div class="row">
+    <%= render 'form', task: @task, categories: @categories %>
+  </div>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+  <%= link_to 'Show', @task %> |
+  <%= link_to 'Back', tasks_path %>
+</div>
