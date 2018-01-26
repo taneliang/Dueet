@@ -15,5 +15,14 @@
   <%= @task.completed %>
 </p>
 
+<p>
+  <strong>Categories:</strong>
+  <ul>
+    <% @task.categories.each do |category| %>
+      <li><%= category.name %></li>
+    <% end %>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
