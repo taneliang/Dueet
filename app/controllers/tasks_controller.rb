@@ -26,7 +26,9 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    other_params, category_ids = task_params
+    @task = Task.new(other_params)
+    set_categories(category_ids, @task)
 
     respond_to do |format|
       if @task.save
@@ -43,19 +45,10 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
-      other_params, categories = task_params
+      other_params, category_ids = task_params
 
       # Set categories before updating the other params
-      @task.categories = [] # Clear as we don't want stray categories that have been deselected
-      categories.each do |category_id|
-        if category_id.empty?
-          next
-        end
-        category = Category.find(category_id)
-        if category.valid? and not @task.categories.include?(category)
-          @task.categories.push(category)
-        end
-      end
+      set_categories(category_ids, @task)
 
       if @task.update(other_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
@@ -87,5 +80,23 @@ class TasksController < ApplicationController
     def task_params
       all_params = params.require(:task).permit(:title, :due_date, :completed, categories: [])
       return all_params.except(:categories), all_params[:categories]
+    end
+
+    def set_categories(category_ids, task)
+      if not category_ids
+        return
+      end
+
+      @task.categories = [] # Clear as we don't want stray categories that have been deselected
+
+      category_ids.each do |category_id|
+        if category_id.empty?
+          next
+        end
+        category = Category.find(category_id)
+        if category.valid? and not @task.categories.include?(category)
+          @task.categories.push(category)
+        end
+      end
     end
 end
