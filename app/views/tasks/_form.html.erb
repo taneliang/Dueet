@@ -4,9 +4,9 @@
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :completed %>
     <%= form.check_box :completed, id: :task_completed %>
+    <%= form.label :completed %>
   </div>
 
   <div class="actions">
