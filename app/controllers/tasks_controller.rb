@@ -51,6 +51,10 @@ class TasksController < ApplicationController
       set_categories(category_ids, @task)
 
       if @task.update(other_params)
+        if params[:no_show]
+          head :no_content
+          return
+        end
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else

@@ -7,7 +7,7 @@
     <table>
       <thead>
         <tr>
-          <th>Completed</th>
+          <th></th>
           <th>Title</th>
           <th>Due</th>
           <th>Categories</th>
@@ -18,7 +18,12 @@
       <tbody>
         <% @tasks.each do |task| %>
           <tr>
-            <td><%= task.completed %></td>
+            <td>
+              <label>
+                <input type="checkbox" taskid=<%= task.id %> <%= "checked" if task.completed %> id=<%= "#{task.id.to_s}_completion" %> />
+                <span></span>
+              </label>
+            </td>
             <td><%= task.title %></td>
             <td><%= l task.due_date.to_date, format: :short if task.due_date %></td>
             <td>
