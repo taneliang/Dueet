@@ -29,8 +29,8 @@
   </div>
 
   <div class="input-field col s12">
-    <%= form.label :categories %>
     <%= select_tag "task[categories]", options_from_collection_for_select(categories, "id", "name", task.categories.map { |c| c.id }), multiple: true, id: "task_categories" %>
+    <%= form.label :categories %>
   </div>
 
   <div class="actions">
