@@ -13,3 +13,11 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+function setup() {
+  $("select").select();
+  $(".datepicker").datepicker();
+}
+
+$(document).ready(setup);
+$(document).on("turbolinks:load", setup);
