@@ -15,10 +15,10 @@
 //= require_tree .
 
 function setup() {
+  // $("ul.tabs").tabs(); // If enabled, the tabs look good but don't redirect
   $("select").select();
   $(".datepicker").datepicker();
   $(".fixed-action-btn").floatingActionButton();
 }
 
-$(document).ready(setup);
 $(document).on("turbolinks:load", setup);

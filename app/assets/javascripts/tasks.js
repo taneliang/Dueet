@@ -12,5 +12,4 @@ function setupTasks() {
   });
 }
 
-$(document).ready(setupTasks);
 $(document).on("turbolinks:load", setupTasks);
