@@ -9,7 +9,7 @@
         <tr>
           <th>Completed</th>
           <th>Title</th>
-          <th>Due Date</th>
+          <th>Due</th>
           <th>Categories</th>
           <th colspan="3"></th>
         </tr>
@@ -20,7 +20,7 @@
           <tr>
             <td><%= task.completed %></td>
             <td><%= task.title %></td>
-            <td><%= task.due_date %></td>
+            <td><%= l task.due_date.to_date, format: :short if task.due_date %></td>
             <td>
               <ul>
                 <% task.categories.each do |category| %>

@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Duedate:</strong>
-  <%= @task.due_date %>
+  <strong>Due:</strong>
+  <td><%= l @task.due_date.to_date, format: :short if @task.due_date %></td>
 </p>
 
 <p>
